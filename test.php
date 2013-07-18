@@ -8,7 +8,7 @@ $dao = DaoFactory::getDao ( DaoFactory::NEWS_SERVICE_DAO );
 
 // Testing getNewsContent
 
-$nCon = $dao->getNewsContent ( 1161123 );
+$nCon = $dao->getNewsContent ( 1163139 );
 
 echo "Get news content test :" . "<br/><br/>";
 echo "PubDate:" . "&nbsp;&nbsp;&nbsp;&nbsp;" . $nCon->getPubDate () . "<br/>";
@@ -32,7 +32,7 @@ foreach ( $nCon->getRelNewsList () as $k ) {
 echo "<br/>" . "<br/>" . "<br/>";
 
 // Testing getSectionNews
-
+/*
 $nlist = $dao->getSectionNews ( 190, 1 ); // first argument: section id, second argument: page number with default=1
 
 echo "Get news content test :" . "<br/><br/>";
@@ -48,5 +48,5 @@ foreach ( $nlist as $x ) {
 	echo "Row Num:" . "&nbsp;&nbsp;&nbsp;&nbsp;" . $x->getRowNum () . "<br/>";
 	echo "Images Only:" . "&nbsp;&nbsp;&nbsp;&nbsp;" . $x->getImagesOnly () . "<br/>" . "<br/>" . "<hr/>" . "<br/>" . "<br/>";
 }
-
+*/
 ?>
