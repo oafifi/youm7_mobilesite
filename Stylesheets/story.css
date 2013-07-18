@@ -21,6 +21,11 @@ body
 	position: absolute;
 	top: 41px;
 	width: 100%;
+	-webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
 }
 #header
 {
@@ -47,11 +52,11 @@ body
 	overflow-y: scroll;
 	width: 98%;
 	padding: 1%;
-	-webkit-transition: all 600ms ease;
-	-moz-transition: all 600ms ease;
-	-ms-transition: all 600ms ease;
-	-o-transition: all 600ms ease;
-	transition: all 600ms ease;
+	-webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
 }
 #menu h3
 {
@@ -85,12 +90,13 @@ body
 	float: right;
 	padding: 0px 0px 0px 5px;
 }
+/*
 #header:hover #menu
 {
 	position: fixed;
 	visibility: visible;
 	right: 0%;
-}
+}*/
 #logo
 {
 	float: right;
