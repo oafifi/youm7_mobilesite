@@ -1,7 +1,7 @@
 var menuShown = false;
 function toggleMenu(){
 	var menu = document.getElementById("menu");
-	var globalContainer = document.getElementById("container");
+	var globalContainer = document.getElementById("global_container");
 	
 	if(!menuShown){
 		menuShown = true;
