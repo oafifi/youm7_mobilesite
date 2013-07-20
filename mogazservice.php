@@ -14,7 +14,8 @@ $rowNum=1;
 foreach ($htmlp->find('img') as $image)
 {
 	$splitedURL = explode('=', $image->attr('longdesc'));
-	$xml .= "<item><Title></Title>";
+	$xml .= "<item>";
+	$xml .= "<Title>".$image->attr('alt')."</Title>";
 	$xml .= "<ID>".$splitedURL[1]."</ID>";		
 	$xml .=	"<image></image><PubDate></PubDate><date></date>";
 	$xml .= "<mainimage>".$image->attr('src')."</mainimage>";
