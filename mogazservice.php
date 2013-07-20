@@ -3,6 +3,7 @@ header('Content-Type: text/xml; charset=utf-8');
 
 require_once 'Lib/QueryPath/src/qp.php';
 
+
 $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 
 $url = 'http://youm7.com/newsbar_files/file/mogazzzzz2352012.asp';
@@ -15,7 +16,7 @@ foreach ($htmlp->find('img') as $image)
 {
 	$splitedURL = explode('=', $image->attr('longdesc'));
 	$xml .= "<item>";
-	$xml .= "<Title>".$image->attr('alt')."</Title>";
+	$xml .= "<Title>".utf8_decode($image->attr('alt'))."</Title>";
 	$xml .= "<ID>".$splitedURL[1]."</ID>";		
 	$xml .=	"<image></image><PubDate></PubDate><date></date>";
 	$xml .= "<mainimage>".$image->attr('src')."</mainimage>";
