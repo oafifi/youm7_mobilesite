@@ -8,24 +8,22 @@ $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 $url = 'http://youm7.com/newsbar_files/file/mogazzzzz2352012.asp';
 $htmlp = htmlqp($url);
 
-$xml .= "<feed>";
+$xml .= "<feeds>";
 
+$rowNum=1;
 foreach ($htmlp->find('img') as $image)
 {
-	$xml .= "<item>";
-	$xml .= "<image>";
-	$xml .= $image->attr('src');
-	$xml .= "</image>";
-	$xml .= "<link>";
-	$xml .= $image->attr('longdesc');
-	$xml .= "</link>";
-	$xml .= "<alt>";
-	$xml .= $image->attr('alt');
-	$xml .= "</alt>";
-	$xml .= "</item>";
+	$splitedURL = explode('=', $image->attr('longdesc'));
+	$xml .= "<item><Title></Title>";
+	$xml .= "<ID>".$splitedURL[1]."</ID>";		
+	$xml .=	"<image></image><PubDate></PubDate><date></date>";
+	$xml .= "<mainimage>".$image->attr('src')."</mainimage>";
+	$xml .= "<abstract></abstract>";
+	$xml .= "<rownum>".$rowNum++."</rownum>";
+	$xml .= "<ImagesOnly></ImagesOnly></item>";
 }
 
-$xml .= "</feed>";
+$xml .= "</feeds>";
 
 echo $xml;
 
