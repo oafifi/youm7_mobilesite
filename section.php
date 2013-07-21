@@ -3,7 +3,7 @@ require_once 'core/dataaccess.php';
 require_once 'Core/datastructures.php';
 header ( "content-type: text/html; charset=utf-8" );
 
-$base = 'http://localhost/youm7_mobilesite/';
+$newsURL = './news.php?';
 
 $secId = $_GET['SecID'];
 
@@ -116,7 +116,7 @@ if($secId){
 								alt="صورة أرشيفية">
 						</div>
 						<div class="section_top_content">
-							<div class="section_block_title"><a href=<?php echo $base.'news.php?NewsID='.$item->getId();?>><?php echo $item->getTitle();?></a></div>
+							<div class="section_block_title"><a href=<?php echo $newsURL.'NewsID='.$item->getId();?>><?php echo $item->getTitle();?></a></div>
 							<div class="section_block_abstract"><?php echo $item->getNewsAbstract();?></div>
 						</div>
 						<div class="clearfix"></div>
@@ -134,7 +134,7 @@ if($secId){
 									alt="صورة أرشيفية">
 							</div>
 							<div class="section_block_info">
-								<div class="section_block_title"><a href=<?php echo $base.'news.php?NewsID='.$item->getId();?>><?php echo $item->getTitle();?></a></div>
+								<div class="section_block_title"><a href=<?php echo $newsURL.'NewsID='.$item->getId();?>><?php echo $item->getTitle();?></a></div>
 								<div class="section_block_date">
 									<img width="10px" height="10px" alt="date icon"
 										src="Images/sec-date.png"><?php echo $item->getDate();?>

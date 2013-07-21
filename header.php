@@ -1,4 +1,4 @@
-<?php $baseURL = "http://localhost/youm7_mobilesite/section.php?"?>
+<?php $sectionURL = "./section.php?"?>
 <div id="header">
 	<div id="menu">
 		<ul>
@@ -6,71 +6,71 @@
 				<div>القائمة الرئيسية</div>
 			</li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=12>تحقيقات
+				href=<?php echo $sectionURL?>SecID=12>تحقيقات
 					وملفات</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=65>أخبار
+				href=<?php echo $sectionURL?>SecID=65>أخبار
 					عاجلة</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=319>سياسة</a></li>
+				href=<?php echo $sectionURL?>SecID=319>سياسة</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=97>تقارير
+				href=<?php echo $sectionURL?>SecID=97>تقارير
 					مصرية</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=203>حوادث</a></li>
+				href=<?php echo $sectionURL?>SecID=203>حوادث</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=296>أخبار
+				href=<?php echo $sectionURL?>SecID=296>أخبار
 					المحافظات</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=88>أخبار
+				href=<?php echo $sectionURL?>SecID=88>أخبار
 					عربية</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=24>اقتصاد</a></li>
+				href=<?php echo $sectionURL?>SecID=24>اقتصاد</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=297>بورصة
+				href=<?php echo $sectionURL?>SecID=297>بورصة
 					وبنوك</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=286>أخبار
+				href=<?php echo $sectionURL?>SecID=286>أخبار
 					عالمية</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=298>أخبار
+				href=<?php echo $sectionURL?>SecID=298>أخبار
 					الرياضة</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=48>فن
+				href=<?php echo $sectionURL?>SecID=48>فن
 					وتليفزيون</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=94>ثقافة</a></li>
+				href=<?php echo $sectionURL?>SecID=94>ثقافة</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=89>منوعات
+				href=<?php echo $sectionURL?>SecID=89>منوعات
 					ومجتمع </a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=245>صحة
+				href=<?php echo $sectionURL?>SecID=245>صحة
 					وطب</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=190>مقالات
+				href=<?php echo $sectionURL?>SecID=190>مقالات
 					القراء</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=291>ألبومات
+				href=<?php echo $sectionURL?>SecID=291>ألبومات
 					اليوم السابع</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=87>مقالات</a></li>
+				href=<?php echo $sectionURL?>SecID=87>مقالات</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=96>صحافة
+				href=<?php echo $sectionURL?>SecID=96>صحافة
 					محلية</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=99>صحافة
+				href=<?php echo $sectionURL?>SecID=99>صحافة
 					عالمية</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=228>صحافة
+				href=<?php echo $sectionURL?>SecID=228>صحافة
 					إسرائيلية</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=299>بقلم
+				href=<?php echo $sectionURL?>SecID=299>بقلم
 					رئيس التحرير</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=192>كاريكاتير
+				href=<?php echo $sectionURL?>SecID=192>كاريكاتير
 					اليوم</a></li>
 			<li><a
-				href=<?php echo $baseURL?>SecID=251>توك
+				href=<?php echo $sectionURL?>SecID=251>توك
 					شو</a></li>
 		</ul>
 	</div>

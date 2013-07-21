@@ -148,6 +148,8 @@ body
 }
 #story_main_image img
 {
+	width: 100%;
+	height: auto;
 	display: block;
 	margin: auto;
 }

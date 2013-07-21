@@ -27,7 +27,7 @@ if($newsId){
 					<div id="story">
 						<div id="story_main_image_wrapper">
 							<div id="story_main_image">
-								<img width="100%" height="56.25%" alt="Story Main Image" src=<?php echo $news->getMainImage()?>>
+								<img alt="Story Main Image" src=<?php echo $news->getMainImage()?>>
 							</div>
 						</div>
 						<div id="story_body">
