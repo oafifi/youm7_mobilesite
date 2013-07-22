@@ -3,6 +3,7 @@ require_once "core/datastructures.php";
 interface NewsDao {
 	function getSectionNews($secId, $page = 1);
 	function getNewsContent($newsId);
+	function getTopNews();
 }
 class DaoFactory {
 	const NEWS_SERVICE_DAO = 1;
@@ -189,6 +190,69 @@ class NewsServiceDao implements NewsDao {
 		xml_parser_free ( $parser );
 		
 		return $this->tempNewsCon;
+	}
+	public function getTopNews(){
+		$url = "http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
+		$response = $this->doGetRequest ( $url );
+		$parser = xml_parser_create ( "UTF-8" );
+	
+		xml_set_element_handler ( 		// anonymous handler functions used here
+		$parser, function ($parser, $name, $attributes) { // start tag handler
+			$name = strtolower ( $name );
+			switch ($name) {
+				case 'feeds' :
+					$this->tempList = array ();
+					break;
+				case 'item' :
+					$this->tempNewsAbs = new NewsAbstract ();
+					break;
+				default :
+					$this->currentTag = $name;
+					break;
+			}
+		}, function ($parser, $name) { // end tag handler
+			$name = strtolower ( $name );
+			if ($name == 'item')
+				$this->tempList [] = $this->tempNewsAbs;
+		} );
+	
+		xml_set_character_data_handler ( 		// anonymous handler functions used here
+		$parser, function ($parser, $data) { // character data handler
+			switch ($this->currentTag) {
+				case 'title' :
+					$this->tempNewsAbs->setTitle ( $this->tempNewsAbs->getTitle () . $data );
+					break;
+				case 'id' :
+					$this->tempNewsAbs->setId ( $this->tempNewsAbs->getId () . $data );
+					break;
+				case 'image' :
+					$this->tempNewsAbs->setImage ( $this->tempNewsAbs->getImage () . $data );
+					break;
+				case 'pubdate' :
+					$this->tempNewsAbs->setPubDate ( $this->tempNewsAbs->getPubDate () . $data );
+					break;
+				case 'date' :
+					$this->tempNewsAbs->setDate ( $this->tempNewsAbs->getDate () . $data );
+					break;
+				case 'mainimage' :
+					$this->tempNewsAbs->setMainImage ( $this->tempNewsAbs->getMainImage () . $data );
+					break;
+				case 'abstract' :
+					$this->tempNewsAbs->setNewsAbstract ( $this->tempNewsAbs->getNewsAbstract () . $data );
+					break;
+				case 'rownum' :
+					$this->tempNewsAbs->setRowNum ( $this->tempNewsAbs->getRowNum () . $data );
+					break;
+				case 'imagesonly' :
+					$this->tempNewsAbs->setImagesOnly ( $this->tempNewsAbs->getImagesOnly () . $data );
+					break;
+			}
+		} );
+	
+		xml_parse ( $parser, $response );
+		xml_parser_free ( $parser );
+	
+		return $this->tempList;
 	}
 }
 
