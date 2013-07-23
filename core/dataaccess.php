@@ -24,6 +24,8 @@ class NewsServiceDao implements NewsDao {
 	private function doGetRequest($url) {
 		$ch = curl_init ( $url );
 		curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt($ch, CURLOPT_TIMEOUT, 300);	//WARNING: this value is in sec, too long time just for testing on local servrer
+		ini_set('max_execution_time', 300);	//WARNING: this value is in sec, too long time just for testing on local servrer
 		$response = curl_exec ( $ch );
 		curl_close ( $ch );
 		return $response;

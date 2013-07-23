@@ -47,6 +47,7 @@ function echoHomeSection($secId,$float){
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="Stylesheets/template.css">
 <link rel="stylesheet" href="Stylesheets/home.css">
 <script type="text/javascript" src="Scripts/header.js"></script>
 
@@ -66,8 +67,8 @@ function echoHomeSection($secId,$float){
 </head>
 <body>
 	<div id="global_container">
+		<?php include "header.php"; ?>
 		<div id="white_background">
-			<?php include "header.php"; ?>
 			<div id="container">
 				<div id="content">
 					<?php $newsList = $dao->getTopNews();?>

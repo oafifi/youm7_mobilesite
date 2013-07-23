@@ -1,5 +1,6 @@
 <?php $sectionURL = "./section.php?"?>
 <div id="header">
+	<div id="menu_background" onclick="toggleMenu()"></div>
 	<div id="menu">
 		<ul>
 			<li>
@@ -78,9 +79,11 @@
 		<img width="18px" height="20px" alt="menu button"
 			src="Images/menu.png">
 	</div>
+	<a href="./index.php">
 	<div id="logo">
 		<img width="134px" height="30px" alt="logo" src="Images/logo.png">
 	</div>
+	</a>
 	<div id="search_button">
 		<img width="30px" height="30px" alt="logo" src="Images/search.png">
 	</div>
