@@ -58,13 +58,9 @@ a {
 	right: 0;
 	background-color: #dd1724;
 	width: 98%;
-	height: 25%;
+	line-height: 1em;
+	height: 2em;
 	padding: 1%;
-	word-wrap: break-word;
-}
-.caption p
-{
-
 }
 .top_date
 {

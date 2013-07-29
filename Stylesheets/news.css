@@ -25,13 +25,14 @@
 }
 #story_title
 {
-	width: 100%;
-	padding: 3% 0% 0% 0%;
+	width: 96%;
+	padding: 1% 2%;
 	color: #df2829;
 }
 #story_info
 {
 	width: 100%;
+	padding: 1% 0%;
 	font-size: 0.8em;
 	color: #7d7d7d;
 }

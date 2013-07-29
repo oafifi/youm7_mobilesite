@@ -30,7 +30,7 @@ body
 .title
 {
 	font-family: "GE_SS_Two_Bold";
-	font-size: 1.25em;
+	font-size: 1.15em;
 }
 #global_container
 {
@@ -114,10 +114,6 @@ body
 {
 	border-right: 0.5em solid #fff;
 }
-#menu ul li a:hover
-{
-	border-right-color: #df2829;
-}
 #menu_button
 {
 	float: right;
@@ -143,4 +139,8 @@ body
 	background-color: #fff;
 	width: 100%;
 	padding: 2% 0% 0% 0%;
+}
+.ellipsis
+{
+	overflow: hidden;
 }

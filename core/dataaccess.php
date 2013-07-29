@@ -20,6 +20,7 @@ class NewsServiceDao implements NewsDao {
 	private $tempNewsAbs; // holds temp NewsAbstract objects during parsing
 	private $tempNewsCon; // holds temp NewsContent objects during parsing
 	private $tempNews; // holds temp News objects during parsing
+	private $tempSecList;	//list holds arrays of sections news
 	private $rNewsFlag; // flag to indicate parsing related news
 	private function doGetRequest($url) {
 		$ch = curl_init ( $url );
@@ -29,6 +30,108 @@ class NewsServiceDao implements NewsDao {
 		$response = curl_exec ( $ch );
 		curl_close ( $ch );
 		return $response;
+	}
+	private function doMultiGetRequests($urlList){
+		$node_count = count($urlList);
+		
+		$curl_arr = array();
+		$master = curl_multi_init();
+		
+		for($i = 0; $i < $node_count; $i++)
+		{
+			$url =$urlList[$i];
+			$curl_arr[$i] = curl_init($url);
+			curl_setopt($curl_arr[$i], CURLOPT_RETURNTRANSFER, true);
+			curl_multi_add_handle($master, $curl_arr[$i]);
+		}
+		
+		do {
+			curl_multi_exec($master,$running);
+		} while($running > 0);
+		
+		for($i = 0; $i < $node_count; $i++)
+		{
+			$results[] = curl_multi_getcontent  ( $curl_arr[$i]  );
+		}
+		
+		return $results;
+		
+	}
+	private function parseSectionNews($xmlString){
+		$parser = xml_parser_create ( "UTF-8" );
+		
+		xml_set_element_handler ( 		// anonymous handler functions used here
+		$parser, function ($parser, $name, $attributes) { // start tag handler
+			$name = strtolower ( $name );
+			switch ($name) {
+				case 'feeds' :
+					$this->tempList = array ();
+					break;
+				case 'item' :
+					$this->tempNewsAbs = new NewsAbstract ();
+					break;
+				default :
+					$this->currentTag = $name;
+					break;
+			}
+		}, function ($parser, $name) { // end tag handler
+			$name = strtolower ( $name );
+			if ($name == 'item')
+				$this->tempList [] = $this->tempNewsAbs;
+		} );
+		
+		xml_set_character_data_handler ( 		// anonymous handler functions used here
+		$parser, function ($parser, $data) { // character data handler
+			switch ($this->currentTag) {
+				case 'title' :
+					$this->tempNewsAbs->setTitle ( $this->tempNewsAbs->getTitle () . $data );
+					break;
+				case 'id' :
+					$this->tempNewsAbs->setId ( $this->tempNewsAbs->getId () . $data );
+					break;
+				case 'image' :
+					$this->tempNewsAbs->setImage ( $this->tempNewsAbs->getImage () . $data );
+					break;
+				case 'pubdate' :
+					$this->tempNewsAbs->setPubDate ( $this->tempNewsAbs->getPubDate () . $data );
+					break;
+				case 'date' :
+					$this->tempNewsAbs->setDate ( $this->tempNewsAbs->getDate () . $data );
+					break;
+				case 'mainimage' :
+					$this->tempNewsAbs->setMainImage ( $this->tempNewsAbs->getMainImage () . $data );
+					break;
+				case 'abstract' :
+					$this->tempNewsAbs->setNewsAbstract ( $this->tempNewsAbs->getNewsAbstract () . $data );
+					break;
+				case 'rownum' :
+					$this->tempNewsAbs->setRowNum ( $this->tempNewsAbs->getRowNum () . $data );
+					break;
+				case 'imagesonly' :
+					$this->tempNewsAbs->setImagesOnly ( $this->tempNewsAbs->getImagesOnly () . $data );
+					break;
+			}
+		} );
+		
+		xml_parse ( $parser, $xmlString );
+		xml_parser_free ( $parser );
+		
+		return $this->tempList;
+	}
+	public function getSections($idList)
+	{
+		$secCount = count($idList);
+		$urlList = array();
+		for($i=0; $i<$secCount; $i++){
+			$urlList[$i]="http://mobrss.youm7.com/rss/service.svc/SelectForSpecifiedSection/SecID/$idList[$i]/page/1";
+		}
+		$responseList = $this->doMultiGetRequests($urlList);
+		$this->tempSecList = array();
+		for($i=0; $i<$secCount; $i++)
+		{
+			$this->tempSecList[$i]=$this->parseSectionNews($responseList[$i]);
+		}
+		return $this->tempSecList;
 	}
 	public function getSectionNews($secId, $page = 1) {
 		$url = "http://mobrss.youm7.com/rss/service.svc/SelectForSpecifiedSection/SecID/$secId/page/$page";

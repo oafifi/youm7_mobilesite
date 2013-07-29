@@ -4,6 +4,7 @@ header ( "content-type: text/html; charset=utf-8" );
 
 $newsId = $_GET['NewsID'];
 
+
 if($newsId){
 	$dao = DaoFactory::getDao ( DaoFactory::NEWS_SERVICE_DAO );
 	$news = $dao->getNewsContent ( $newsId );
@@ -26,15 +27,15 @@ if($newsId){
 			<div id="container">
 				<div id="content">
 					<div id="story">
+						<div id="story_title" class="title">
+								<?php echo $news->getTitle()?>
+						</div>
 						<div id="story_main_image_wrapper">
 							<div id="story_main_image">
 								<img alt="Story Main Image" src=<?php echo $news->getMainImage()?>>
 							</div>
 						</div>
 						<div id="story_body">
-							<div id="story_title" class="title">
-								<?php echo $news->getTitle()?>
-							</div>
 							<div id="story_info">
 								<div id="story_reporter"><img width="11px" height="11px" alt="reporter" src="Images/writer.png">
 								</div>
